@@ -1,0 +1,98 @@
+[
+    {
+        "stockName": "ONGC",
+        "price": "117.6"
+    },
+    {
+        "stockName": "BAJFINANCE",
+        "price": "5784.8"
+    },
+    {
+        "stockName": "SBIN",
+        "price": "432.55"
+    },
+    {
+        "stockName": "BAJAJ-AUTO",
+        "price": "4238.95"
+    },
+    {
+        "stockName": "TECHM",
+        "price": "1030.5"
+    },
+    {
+        "stockName": "WIPRO",
+        "price": "542.8"
+    },
+    {
+        "stockName": "DIVISLAB",
+        "price": "4220.1"
+    },
+    {
+        "stockName": "IOC",
+        "price": "109.9"
+    },
+    {
+        "stockName": "LT",
+        "price": "1474.65"
+    },
+    {
+        "stockName": "RELIANCE",
+        "price": "2168.9"
+    },
+    {
+        "stockName": "NESTLEIND",
+        "price": "17758.5"
+    },
+    {
+        "stockName": "BAJAJFINSV",
+        "price": "11829.9"
+    },
+    {
+        "stockName": "DRREDDY",
+        "price": "5316.5"
+    },
+    {
+        "stockName": "UPL",
+        "price": "815.8"
+    },
+    {
+        "stockName": "BPCL",
+        "price": "470.85"
+    },
+    {
+        "stockName": "HDFCBANK",
+        "price": "1511.7"
+    },
+    {
+        "stockName": "INDUSINDBK",
+        "price": "1010.05"
+    },
+    {
+        "stockName": "TITAN",
+        "price": "1591.4"
+    },
+    {
+        "stockName": "CIPLA",
+        "price": "946.45"
+    },
+    {
+        "stockName": "EICHERMOT",
+        "price": "2665.8"
+    },
+    {
+        "stockName": "AXISBANK",
+        "price": "745.15"
+    },
+    {
+        "stockName": "ASIANPAINT",
+        "price": "2931"
+    },
+    {
+        "stockName": "GRASIM",
+        "price": "1444.55"
+    },
+    {
+        "stockName": "ICICIBANK",
+        "price": "650.1"
+    }
+]
