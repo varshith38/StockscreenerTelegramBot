@@ -5,6 +5,7 @@ const db = firebaseApp.firestore();
 function getStockList(url,identifier) {
     return new Promise( async (resolve, reject) => {
         try{
+            
             const browser = await puppeteer.launch();
             const page = await browser.newPage();
             await page.goto(url);
@@ -23,8 +24,8 @@ function getStockList(url,identifier) {
             });
             await browser.close();
 
-            
-            console.log(dbResult)
+            await saveData(identifier,list);
+
             return resolve(list);
         }catch(e){
             return reject(e);
@@ -32,17 +33,88 @@ function getStockList(url,identifier) {
     })
 }
 
-const saveData = async (identifier) => {
-    
-    switch (identifier) {
-        case 'PB':
-            break;
-        case 'IB':
-            let dbResult = await db.collection('intrabuy').add({list})
-            
-            break;
-        default:
-            break;
+const saveData = async (identifier,list) => {
+    try{
+        switch (identifier) {
+            case 'PB':
+                db.collection("positionalbuy").get().then((querySnapshot) => {
+                    
+                    if (querySnapshot.docs.length == 0){
+                        list.forEach( i => {
+                            db.collection('positionalbuy').add({
+                                stockName: i.stockName,
+                                price: i.price,
+                                time: new Date(),
+                                status: 'N'
+                            })
+                        })
+                    }else{
+                        let stocks = list.map( i => i.stockName)
+                        querySnapshot.forEach( doc => {
+                            console.log(doc.id)
+                            console.log(doc.data().stockName)
+                            if (stocks.includes(doc.data().stockName)){
+                                db.collection('positionalbuy').doc(doc.id).set({
+                                    stockName: doc.data().stockName,
+                                    price: doc.data().price,
+                                    time: new Date(),
+                                    status: 'Y'
+                                })
+                            }else{
+                                db.collection('positionalbuy').doc(doc.id).set({
+                                    stockName: doc.data().stockName,
+                                    price: doc.data().price,
+                                    time: new Date(),
+                                    status: 'N'
+                                })
+                            }
+                        })
+                    }
+                }).catch(e => console.log(e.message));
+                break;
+            case 'IB':
+                db.collection("intrabuy").get().then((querySnapshot) => {
+                    
+                    if (querySnapshot.docs.length == 0){
+                        list.forEach( i => {
+                            db.collection('intrabuy').add({
+                                stockName: i.stockName,
+                                price: i.price,
+                                time: new Date(),
+                                status: 'N'
+                            })
+                        })
+                    }else{
+                        let stocks = list.map( i => i.stockName)
+                        querySnapshot.forEach( doc => {
+                            console.log(doc.id)
+                            console.log(doc.data().stockName)
+                            if (stocks.includes(doc.data().stockName)){
+                                db.collection('intrabuy').doc(doc.id).set({
+                                    stockName: doc.data().stockName,
+                                    price: doc.data().price,
+                                    time: new Date(),
+                                    status: 'Y'
+                                })
+                            }else{
+                                db.collection('intrabuy').doc(doc.id).set({
+                                    stockName: doc.data().stockName,
+                                    price: doc.data().price,
+                                    time: new Date(),
+                                    status: 'N'
+                                })
+                            }
+                        })
+                    }
+                }).catch(e => console.log(e.message));
+                // let dbResult = await db.collection('intrabuy').add({list})
+                // console.log(dbResult);
+                break;
+            default:
+                break;
+        }
+    }catch(e){
+        console.log(e.message)
     }
 
 }
